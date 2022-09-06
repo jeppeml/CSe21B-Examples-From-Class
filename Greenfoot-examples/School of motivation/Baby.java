@@ -17,7 +17,7 @@ public class Baby extends Actor
         if(food != null){
             eat(food);
         }
-        
+        cry();
     }  
     
     private void checkHungerAndDie(){

@@ -1,5 +1,5 @@
 #Greenfoot properties
-#Tue Sep 06 09:28:36 CEST 2022
+#Tue Sep 06 10:26:44 CEST 2022
 width=822
 readme.name=@README
 height=551
@@ -34,8 +34,8 @@ readme.y=10
 readme.x=10
 target2.width=120
 target1.width=120
-yPosition=149
 editor.fx.0.y=308
+yPosition=149
 editor.fx.0.x=119
 readme.width=48
 target2.type=ClassTarget
@@ -44,8 +44,8 @@ class.Cactus.image=cactus.png
 class.Turd.image=rock2.png
 version=3.0.0
 package.numDependencies=0
-class.BabyFood.superclass=greenfoot.Actor
 project.charset=UTF-8
+class.BabyFood.superclass=greenfoot.Actor
 readme.height=60
 class.Cactus.superclass=greenfoot.Actor
 publish.tags=
