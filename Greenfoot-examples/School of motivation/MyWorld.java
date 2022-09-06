@@ -40,12 +40,14 @@ public class MyWorld extends World
         
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        Font f = new Font("Verdana",74);
+        getBackground().setFont(f);
+        getBackground().drawString("Hello", 200, 200);
         
-        /*
-        for(int i=0;i<10;i++)
+        for(int i=0;i<10;i++) // i = i + 1;
         {
             Baby b = new Baby();
             addObject(b,Greenfoot.getRandomNumber(600),Greenfoot.getRandomNumber(400));
-        }*/
+        }
     }
 }
