@@ -8,10 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Baby extends Actor
 {
-    private int hungryness = 1000; // <0 child dies, Extremely hungry = 0, full = 1000
-    
+    private int hungryness = 300; // <0 child dies, Extremely hungry = 0, full = 1000
+    private int currentAct = 0;
     public void act() 
     {
+        currentAct++;
         checkHungerAndDie();
         BabyFood food = (BabyFood) getOneIntersectingObject(BabyFood.class);
         if(food != null){
@@ -28,6 +29,10 @@ public class Baby extends Actor
     }
     
     public void cry(){
+        
+        /*if(currentAct%15==0){
+            ro
+        }*/
     }
     
     public void eat(BabyFood food){
