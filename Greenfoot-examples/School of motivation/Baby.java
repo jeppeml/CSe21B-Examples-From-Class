@@ -12,13 +12,16 @@ public class Baby extends Actor
     private int currentAct = 0;
     public void act() 
     {
+        GameOver gow = new GameOver();
         currentAct++;
-        checkHungerAndDie();
         BabyFood food = (BabyFood) getOneIntersectingObject(BabyFood.class);
         if(food != null){
             eat(food);
         }
-        cry();
+        if (hungryness<500) {
+            cry();
+        }
+        checkHungerAndDie();
     }  
     
     private void checkHungerAndDie(){
@@ -29,10 +32,11 @@ public class Baby extends Actor
     }
     
     public void cry(){
-        
-        /*if(currentAct%15==0){
-            ro
-        }*/
+        if(currentAct%15==0){
+            if(getRotation()!=20)
+                setRotation(20);
+            else setRotation(-20);
+        }
     }
     
     public void eat(BabyFood food){
