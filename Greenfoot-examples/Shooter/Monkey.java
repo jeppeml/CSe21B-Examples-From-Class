@@ -12,7 +12,10 @@ public class Monkey extends Actor
     
     public Monkey(){
         super();
-        getImage().scale(150, 150);
+        GreenfootImage img = getImage();
+        //img.scale(150,150);
+        
+        getImage().scale((int)(img.getWidth()*0.3), (int)(img.getHeight()*0.3));
     }
     
     /**

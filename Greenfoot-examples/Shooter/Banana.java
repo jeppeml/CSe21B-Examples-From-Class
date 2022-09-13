@@ -17,6 +17,8 @@ public class Banana extends Actor
         move(3);
         if(isAtEdge()){
             getWorld().removeObject(this);
+            GameOverWorld gow = new GameOverWorld();
+            Greenfoot.setWorld(gow);
         }
     }    
 }

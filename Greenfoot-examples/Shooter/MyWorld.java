@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-
+private Wombat w1;
+private Wombat w2;
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -17,9 +18,10 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(950, 600, 1); 
-        Wombat w = new Wombat();
-        addObject(w,100,300);
-        w.setRotation(15);
+        w1 = new Wombat();
+        addObject(w1,100,300);
+        
+        w1.setRotation(15);
         
         addObject(new Monkey(), 700, 300);
         

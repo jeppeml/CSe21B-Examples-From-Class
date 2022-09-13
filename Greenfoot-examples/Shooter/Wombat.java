@@ -14,7 +14,7 @@ public class Wombat extends Actor
      */
     public void act() 
     {
-        if(Greenfoot.isKeyDown(" ")){
+        if(Greenfoot.isKeyDown("space")){
             Banana b = new Banana();
             b.setRotation(getRotation());
             getWorld().addObject(b,getX(),getY());
