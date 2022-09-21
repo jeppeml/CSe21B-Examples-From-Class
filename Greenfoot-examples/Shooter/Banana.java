@@ -14,7 +14,9 @@ public class Banana extends Actor
      */
     public void act() 
     {
+        turnTowards(MyWorld.myMonkey.getX(), MyWorld.myMonkey.getY());
         move(3);
+        
         if(isAtEdge()){
             getWorld().removeObject(this);
             GameOverWorld gow = new GameOverWorld();
