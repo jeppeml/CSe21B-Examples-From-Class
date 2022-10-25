@@ -1,14 +1,19 @@
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class App extends Application {
+public class App extends Application implements Initializable{
     public TextArea txtOutput;
     public TextArea txtInput;
 
@@ -29,6 +34,7 @@ public class App extends Application {
         String input = txtInput.getText();
         System.out.println("you clicked a button, bastard!");
         txtOutput.setText(reverseString(input));
+        spaceIt(input);
     }
     private String reverseString(String input){
         String output = "";
@@ -37,6 +43,31 @@ public class App extends Application {
         }
         return output;
     }
+
+    private void spaceIt(String input){
+        System.out.println("fori loop");
+        char[] chars = input.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            char c = chars[i];
+            System.out.print(i + " ");
+            System.out.println(c);
+        }
+
+        System.out.println("while loop");
+        int i = 0;
+        while(i < chars.length){
+            char c = chars[i];
+            System.out.print(i + " ");
+            System.out.println(c);
+            i++;
+        }
+        System.out.println("enhanced for loop (foreach)");
+        for (char c: chars) {
+            System.out.println(c);
+        }
+
+    }
+
     private String atSeparator(String input){
         String output = "";
         for(int i=0;i<input.length();i++){
@@ -54,5 +85,12 @@ public class App extends Application {
 
     private String tagIt(String input){
         return "<" + input + ">";
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+
     }
 }
