@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +30,8 @@ public class MovieDAO {
         MovieDAO mdao = new MovieDAO();
         Movie theIncredibleHulk = mdao.getMovie(4688);
         System.out.println(theIncredibleHulk.getTitle());
+        System.out.println(mdao.getNextId());
+        //mdao.createMovie(1986, "Jeppe starts at primary school");
     }
     /**
      * Gets a list of all movies in the persistence storage.
@@ -85,22 +86,16 @@ public class MovieDAO {
 
     }
 
-    /**
-     * Creates a movie in the persistence storage.
-     *
-     * @param releaseYear The release year of the movie
-     * @param title       The title of the movie
-     * @return The object representation of the movie added to the persistence
-     * storage.
-     */
     private int getNextId(){
         try {
+            long millis = System.currentTimeMillis();
             List<Movie> movies = getAllMovies();
             int biggestId = 0;
             for(Movie m : movies){
                 if(biggestId<m.getId())
                     biggestId = m.getId();
             }
+            System.out.println(System.currentTimeMillis()-millis);
             return biggestId+1;
 
         } catch (IOException e) {
@@ -117,7 +112,7 @@ public class MovieDAO {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return new Movie(id, releaseYear,title);
     }
 
     /**
