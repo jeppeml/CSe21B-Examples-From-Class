@@ -11,11 +11,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import movierecsys.be.Movie;
+
+import static java.nio.file.StandardOpenOption.APPEND;
 
 /**
  * @author pgn
@@ -90,8 +93,30 @@ public class MovieDAO {
      * @return The object representation of the movie added to the persistence
      * storage.
      */
+    private int getNextId(){
+        try {
+            List<Movie> movies = getAllMovies();
+            int biggestId = 0;
+            for(Movie m : movies){
+                if(biggestId<m.getId())
+                    biggestId = m.getId();
+            }
+            return biggestId+1;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private Movie createMovie(int releaseYear, String title) {
-        //TODO Create movie.
+        int id = getNextId();
+        try {
+            Files.writeString(
+                    Path.of(MOVIE_SOURCE),
+                    id + "," + releaseYear + "," + title + "\n",
+                    APPEND);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
