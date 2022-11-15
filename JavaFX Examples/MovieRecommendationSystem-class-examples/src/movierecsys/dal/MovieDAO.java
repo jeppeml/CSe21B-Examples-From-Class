@@ -121,7 +121,7 @@ public class MovieDAO {
      * @return A Movie object.
      */
     private Movie getMovie(int id) {
-        try {
+        /*try {
             List<Movie> movies = getAllMovies();
             for (Movie m : movies){
                 if (m.getId()==id)
@@ -130,9 +130,9 @@ public class MovieDAO {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return null;*/
 
-        /*
+
         try {
             List<String> lines = Files.readAllLines(Path.of(MOVIE_SOURCE));
             for(String line : lines ){
@@ -146,7 +146,7 @@ public class MovieDAO {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;*/
+        return null;
     }
 
 }
