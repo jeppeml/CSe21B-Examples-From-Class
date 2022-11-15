@@ -125,7 +125,7 @@ public class MovieDAO {
     }
 
     /**
-     * Updates the movie in the persistence storage to reflect the values in the
+     * Updates the movie in the persistent storage to reflect the values in the
      * given Movie object.
      *
      * @param movie The updated movie.
@@ -135,7 +135,7 @@ public class MovieDAO {
     }
 
     /**
-     * Gets a the movie with the given ID.
+     * Gets a movie with the given ID.
      *
      * @param id ID of the movie.
      * @return A Movie object.
