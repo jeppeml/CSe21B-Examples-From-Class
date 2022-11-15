@@ -6,6 +6,7 @@
 package tictactoe.gui.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import tictactoe.bll.GameBoard;
-import tictactoe.bll.GameBoardL;
-import tictactoe.bll.GameBoardStandard;
-import tictactoe.bll.IGameModel;
+import tictactoe.bll.*;
 
 /**
  *
@@ -107,6 +105,7 @@ public class TicTacViewController implements Initializable
 
     private void clearBoard()
     {
+
         for(Node n : gridPane.getChildren())
         {
             Button btn = (Button) n;

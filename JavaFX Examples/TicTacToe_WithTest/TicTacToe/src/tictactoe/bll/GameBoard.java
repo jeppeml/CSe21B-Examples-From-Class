@@ -1,7 +1,9 @@
 package tictactoe.bll;
 
+
 public abstract class GameBoard implements IGameModel{
     protected int currentPlayer = 0;
+
     protected int[][] board = {{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
     protected int turns = 0;
     public int getNextPlayer()
@@ -11,8 +13,10 @@ public abstract class GameBoard implements IGameModel{
 
     @Override
     public boolean play(int col, int row) {
-        if(board[col][row]!=-1)
+        if(board[col][row]!=-1 || isGameOver())
             return false;
+
+        board[col][row]=currentPlayer;
 
         if (currentPlayer==0)
             currentPlayer = 1;
@@ -42,6 +46,8 @@ public abstract class GameBoard implements IGameModel{
 
         board = new int[][]{{-1,-1,-1},{-1,-1,-1},{-1,-1,-1}};
         turns = 0;
+        throw new NoGradesInGradebookException("hello");
+
     }
 
     @Override
