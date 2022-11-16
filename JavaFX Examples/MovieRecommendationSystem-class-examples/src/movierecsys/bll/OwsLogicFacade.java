@@ -92,4 +92,6 @@ public interface OwsLogicFacade
      */
     List<User> getAllUsers();
 
+    List<Movie> getAllMovies();
+
 }

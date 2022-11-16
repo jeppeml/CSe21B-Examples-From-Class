@@ -5,17 +5,13 @@
  */
 package movierecsys.dal;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import movierecsys.be.Movie;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
-import movierecsys.be.Movie;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 
@@ -26,20 +22,12 @@ public class MovieDAO {
 
     private static final String MOVIE_SOURCE = "data/movie_titles.txt";
 
-    public static void main(String[] args) {
-        MovieDAO mdao = new MovieDAO();
-        Movie theIncredibleHulk = mdao.getMovie(4688);
-        System.out.println(theIncredibleHulk.getTitle());
-        System.out.println(mdao.getNextId());
-        //mdao.createMovie(1986, "Jeppe starts at primary school");
-    }
     /**
      * Gets a list of all movies in the persistence storage.
      *
      * @return List of movies.
-     * @throws java.io.FileNotFoundException
      */
-    public List<Movie> getAllMovies() throws FileNotFoundException, IOException {
+    public List<Movie> getAllMovies() {
         List<Movie> allMovies = new ArrayList<>();
         File file = new File(MOVIE_SOURCE);
 
@@ -55,6 +43,10 @@ public class MovieDAO {
                     //In a perfect world you should at least log the incident.
                 }
             }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         return allMovies;
     }
@@ -87,20 +79,15 @@ public class MovieDAO {
     }
 
     private int getNextId(){
-        try {
-            long millis = System.currentTimeMillis();
+
             List<Movie> movies = getAllMovies();
             int biggestId = 0;
             for(Movie m : movies){
                 if(biggestId<m.getId())
                     biggestId = m.getId();
             }
-            System.out.println(System.currentTimeMillis()-millis);
             return biggestId+1;
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
     private Movie createMovie(int releaseYear, String title) {
         int id = getNextId();
@@ -121,7 +108,23 @@ public class MovieDAO {
      * @param movie The movie to delete.
      */
     private void deleteMovie(Movie movie) {
-        //TODO Delete movie
+        try {
+            List<Movie> movies = getAllMovies();
+
+            String movieString  = "";
+            for(Movie m : movies){
+                if(m.getId()!=movie.getId()){
+                    movieString += m.getId() + "," +
+                            m.getYear() + "," +
+                            m.getTitle() + "\n";
+                }
+            }
+            Files.writeString(Path.of(MOVIE_SOURCE),movieString);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     /**
@@ -131,7 +134,24 @@ public class MovieDAO {
      * @param movie The updated movie.
      */
     private void updateMovie(Movie movie) {
-        //TODO Update movies
+        try {
+            List<Movie> movies = getAllMovies();
+
+            String movieString  = "";
+            for(Movie m : movies){
+                if(m.getId()==movie.getId()){
+                    m = movie;
+                }
+                movieString += m.getId() + "," +
+                        m.getYear() + "," +
+                        m.getTitle() + "\n";
+            }
+
+            Files.writeString(Path.of(MOVIE_SOURCE),movieString);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -141,18 +161,6 @@ public class MovieDAO {
      * @return A Movie object.
      */
     private Movie getMovie(int id) {
-        /*try {
-            List<Movie> movies = getAllMovies();
-            for (Movie m : movies){
-                if (m.getId()==id)
-                    return m;
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return null;*/
-
-
         try {
             List<String> lines = Files.readAllLines(Path.of(MOVIE_SOURCE));
             for(String line : lines ){
