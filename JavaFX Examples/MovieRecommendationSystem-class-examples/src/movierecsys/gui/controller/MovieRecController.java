@@ -7,6 +7,10 @@ package movierecsys.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -25,7 +29,7 @@ public class MovieRecController implements Initializable
      * The TextField containing the URL of the targeted website.
      */
     @FXML
-    private TextField txtMovieSearcjh;
+    private TextField txtMovieSearch;
 
     /**
      * The TextField containing the query word.
@@ -40,6 +44,16 @@ public class MovieRecController implements Initializable
     {
         lstMovies.setItems(model.getMovies());
         model.fetchAllMovies();
+        txtMovieSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                model.search(newValue);
+            }
+        });
     }
 
+    @FXML
+    private void search(ActionEvent actionEvent) {
+        model.search(txtMovieSearch.getText());
+    }
 }

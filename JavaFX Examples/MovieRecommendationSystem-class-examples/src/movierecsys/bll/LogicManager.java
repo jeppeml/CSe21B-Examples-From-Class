@@ -5,6 +5,7 @@ import movierecsys.be.Rating;
 import movierecsys.be.User;
 import movierecsys.dal.MovieDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LogicManager implements OwsLogicFacade{
@@ -28,7 +29,16 @@ public class LogicManager implements OwsLogicFacade{
 
     @Override
     public List<Movie> searchMovies(String query) {
-        throw new RuntimeException("Not implemented");
+        List<Movie> movies = movieDAO.getAllMovies();
+        List<Movie> filtered = new ArrayList<>();
+
+        for(Movie m: movies){
+            if(m.getTitle().toLowerCase().contains(query.toLowerCase()) ||
+               (""+m.getYear()).contains(query))
+                filtered.add(m);
+
+        }
+        return filtered;
     }
 
     @Override

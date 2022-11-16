@@ -38,7 +38,7 @@ public interface OwsLogicFacade
     List<Movie> getMovieReccomendations(User user);
 
     /**
-     * Searches for all mmovies that matches the given query somehow.
+     * Searches for all movies that matches the given query somehow.
      * @param query The search query
      * @return A list of movies that matches the search query.
      */
