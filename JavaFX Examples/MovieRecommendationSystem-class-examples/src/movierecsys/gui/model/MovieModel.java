@@ -29,4 +29,15 @@ public class MovieModel {
         movies.clear();
         movies.addAll(bll.searchMovies(query));
     }
+
+    public Movie createMovie(int year, String title) {
+        Movie movie = bll.createMovie(year, title);
+        movies.add(movie);
+        return movie;
+    }
+
+    public void deleteMovie(Movie movie) {
+        bll.deleteMovie(movie);
+        movies.remove(movie);
+    }
 }

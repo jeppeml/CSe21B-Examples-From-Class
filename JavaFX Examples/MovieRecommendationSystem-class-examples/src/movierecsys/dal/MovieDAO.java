@@ -63,8 +63,12 @@ public class MovieDAO {
 
         int id = Integer.parseInt(arrMovie[0]);
         int year = 0;
-        if (!arrMovie[1].equals("NULL"))
+        try{
             year = Integer.parseInt(arrMovie[1]);
+        }
+        catch (NumberFormatException nfe){
+            year = -1;
+        }
 
         String title = arrMovie[2];
         if (arrMovie.length > 3) {
@@ -88,8 +92,9 @@ public class MovieDAO {
             }
             return biggestId+1;
 
+
     }
-    private Movie createMovie(int releaseYear, String title) {
+    public Movie createMovie(int releaseYear, String title) {
         int id = getNextId();
         try {
             Files.writeString(
@@ -107,7 +112,7 @@ public class MovieDAO {
      *
      * @param movie The movie to delete.
      */
-    private void deleteMovie(Movie movie) {
+    public void deleteMovie(Movie movie) {
         try {
             List<Movie> movies = getAllMovies();
 
@@ -133,7 +138,7 @@ public class MovieDAO {
      *
      * @param movie The updated movie.
      */
-    private void updateMovie(Movie movie) {
+    public void updateMovie(Movie movie) {
         try {
             List<Movie> movies = getAllMovies();
 
@@ -160,7 +165,7 @@ public class MovieDAO {
      * @param id ID of the movie.
      * @return A Movie object.
      */
-    private Movie getMovie(int id) {
+    public Movie getMovie(int id) {
         try {
             List<String> lines = Files.readAllLines(Path.of(MOVIE_SOURCE));
             for(String line : lines ){

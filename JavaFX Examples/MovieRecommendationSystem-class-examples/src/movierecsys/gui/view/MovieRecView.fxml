@@ -33,11 +33,22 @@
          <children>
             <HBox prefHeight="29.0" prefWidth="417.0">
                <children>
-                  <TextField fx:id="txtMovieSearch" prefHeight="26.0" prefWidth="344.0" promptText="search movies" />
-                  <Button mnemonicParsing="false" onAction="#search" text="Search" />
+                  <TextField fx:id="txtMovieSearch" prefHeight="26.0" prefWidth="423.0" promptText="search movies" />
                </children>
             </HBox>
             <ListView fx:id="lstMovies" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+            <HBox prefHeight="3.0" prefWidth="417.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#clickDelete" prefHeight="26.0" prefWidth="417.0" text="Delete" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="439.0" prefHeight="19.0" prefWidth="417.0">
+               <children>
+                  <TextField fx:id="txtYear" prefHeight="26.0" prefWidth="83.0" promptText="year YYYY" />
+                  <TextField fx:id="txtTitle" prefHeight="26.0" prefWidth="271.0" promptText="title" />
+                  <Button mnemonicParsing="false" onAction="#clickCreate" text="Create..." />
+               </children>
+            </HBox>
          </children>
       </VBox>
    </center>

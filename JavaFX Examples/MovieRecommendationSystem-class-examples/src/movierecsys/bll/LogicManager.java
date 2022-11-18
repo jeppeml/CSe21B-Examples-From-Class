@@ -43,7 +43,7 @@ public class LogicManager implements OwsLogicFacade{
 
     @Override
     public Movie createMovie(int year, String title) {
-        throw new RuntimeException("Not implemented");
+        return movieDAO.createMovie(year, title);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class LogicManager implements OwsLogicFacade{
 
     @Override
     public void deleteMovie(Movie movie) {
-        throw new RuntimeException("Not implemented");
+        movieDAO.deleteMovie(movie);
     }
 
     @Override

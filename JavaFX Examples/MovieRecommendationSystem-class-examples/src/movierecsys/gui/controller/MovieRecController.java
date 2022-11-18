@@ -24,16 +24,12 @@ import movierecsys.gui.model.MovieModel;
  */
 public class MovieRecController implements Initializable
 {
-
-    /**
-     * The TextField containing the URL of the targeted website.
-     */
+    @FXML
+    private TextField txtTitle;
     @FXML
     private TextField txtMovieSearch;
-
-    /**
-     * The TextField containing the query word.
-     */
+    @FXML
+    private TextField txtYear;
     @FXML
     private ListView<Movie> lstMovies;
 
@@ -52,8 +48,14 @@ public class MovieRecController implements Initializable
         });
     }
 
-    @FXML
-    private void search(ActionEvent actionEvent) {
-        model.search(txtMovieSearch.getText());
+    public void clickCreate(ActionEvent actionEvent) {
+        model.createMovie(Integer.parseInt(txtYear.getText()),txtTitle.getText());
+        txtYear.clear();
+        txtTitle.clear();
+    }
+
+    public void clickDelete(ActionEvent actionEvent) {
+        Movie selectedMovie = lstMovies.getSelectionModel().getSelectedItem();
+        model.deleteMovie(selectedMovie);
     }
 }

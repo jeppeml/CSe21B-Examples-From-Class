@@ -16,5 +16,20 @@ public class MovieRecSysException extends Exception
     {
         super(message);
     }
-    
+
+    public MovieRecSysException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public MovieRecSysException(Throwable cause) {
+        super(cause);
+    }
+
+    public MovieRecSysException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public MovieRecSysException() {
+        super();
+    }
 }
