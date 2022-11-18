@@ -49,9 +49,12 @@ public class MovieRecController implements Initializable
     }
 
     public void clickCreate(ActionEvent actionEvent) {
-        model.createMovie(Integer.parseInt(txtYear.getText()),txtTitle.getText());
-        txtYear.clear();
-        txtTitle.clear();
+        int year = model.getValidYear(txtYear.getText());
+        if(year != -1) {
+            model.createMovie(year, txtTitle.getText());
+            txtYear.clear();
+            txtTitle.clear();
+        }
     }
 
     public void clickDelete(ActionEvent actionEvent) {
