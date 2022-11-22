@@ -1,6 +1,7 @@
 package dk.easv.presentation;
 
 import dk.easv.entities.*;
+import dk.easv.logic.LogicFacade;
 import dk.easv.logic.LogicManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,7 +13,7 @@ import java.util.*;
 
 public class AppModel {
 
-    LogicManager logic = new LogicManager();
+    LogicFacade logic = new LogicManager();
     // Models of the data in the view
     private final ObservableList<User>  obsUsers = FXCollections.observableArrayList();
     private final ObservableList<Movie> obsTopMovieSeen = FXCollections.observableArrayList();

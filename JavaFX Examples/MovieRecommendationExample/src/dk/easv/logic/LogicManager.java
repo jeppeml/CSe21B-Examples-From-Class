@@ -4,19 +4,22 @@ import dk.easv.dataaccess.DataAccessManager;
 import dk.easv.entities.*;
 import java.util.*;
 
-public class LogicManager {
+public class LogicManager implements LogicFacade {
 
     DataAccessManager dataMgr = new DataAccessManager();
 
+    @Override
     public void reloadAllDataFromStorage(){
         dataMgr.updateCacheFromDisk();
     }
 
+    @Override
     public Collection<User> getAllUsers() {
         return dataMgr.getAllUsers().values();
     }
 
     // Gets all rated movies for one user and returns them sorted by avg. best by all users.
+    @Override
     public List<Movie> getTopAverageRatedMovies(User u) {
         List<Movie> top = new ArrayList<>();
 
@@ -29,6 +32,7 @@ public class LogicManager {
     }
 
     // Gets all rated movies for one user and returns them sorted by avg. best by all users.
+    @Override
     public List<Movie> getTopAverageRatedMoviesUserDidNotSee(User u) {
         List<Movie> top = new ArrayList<>();
 
@@ -66,6 +70,7 @@ public class LogicManager {
         return 1-(rsim/count); // 1.0 = 100% identical; 0.0 no similarities
     }
 
+    @Override
     public List<UserSimilarity> getTopSimilarUsers(User user){
         List<UserSimilarity> allUsersSimList = new ArrayList<>();
         for (User u: dataMgr.getAllUsers().values()){
@@ -77,6 +82,7 @@ public class LogicManager {
         return allUsersSimList;
     }
 
+    @Override
     public List<TopMovie> getTopMoviesFromSimilarPeople(User u){
         List<UserSimilarity> userSimList = getTopSimilarUsers(u);
         List<TopMovie> favorites = new ArrayList<>();
