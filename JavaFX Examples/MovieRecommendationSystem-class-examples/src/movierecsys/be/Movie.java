@@ -5,6 +5,9 @@
  */
 package movierecsys.be;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author pgn
@@ -16,11 +19,25 @@ public class Movie
     private String title;
     private int year;
 
+    private final List<Rating> ratings = new ArrayList<>();
+
     public Movie(int id, int year, String title)
     {
         this.id = id;
         this.title = title;
         this.year = year;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public double getAvgRating(){
+        double sum = 0;
+        for(Rating r : ratings){
+            sum += r.getRating();
+        }
+        return sum/ratings.size();
     }
 
     public int getId()
@@ -55,6 +72,7 @@ public class Movie
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", year=" + year +
+                ", ratings=" + getAvgRating() +
                 '}';
     }
 }

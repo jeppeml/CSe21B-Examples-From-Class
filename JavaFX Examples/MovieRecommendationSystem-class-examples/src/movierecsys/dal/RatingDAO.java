@@ -6,9 +6,8 @@
 package movierecsys.dal;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Stream;
 
 import movierecsys.be.Movie;
 import movierecsys.be.MovieAverageRating;
@@ -35,27 +34,9 @@ public class RatingDAO
         //System.out.println(dao.getAllRatings());
         System.out.println("finished");
         System.out.println(System.currentTimeMillis()-start);
+        Stream<Movie> s = dao.movies.values().stream().sorted((o1, o2) -> ((Double)o1.getAvgRating()).compareTo(o2.getAvgRating()));
 
-        HashMap<Movie, MovieAverageRating> mavg = new HashMap<>();
-
-        List<MovieAverageRating> movieAvg = new ArrayList();
-        System.out.println("Start ratings count");
-        for(Rating r : ratings){
-            Movie m = r.getMovie();
-            if(movieAvg.contains(r.getMovie())){
-                MovieAverageRating mar = movieAvg.get(movieAvg.indexOf(m));
-                mar.setTotal(mar.getTotal()+r.getRating());
-                mar.setAmount(mar.getAmount()+1);
-            }
-            else {
-                movieAvg.add(new MovieAverageRating(m, r.getRating(),1));
-            }
-        }
-        System.out.println("Stop ratings count and sort start...");
-        movieAvg.sort((m1,m2)->m1.getAverageRating()-m2.getAverageRating());
-
-        System.out.println(movieAvg.get(0));
-
+        System.out.println(s.toList());
     }
 
     public RatingDAO(){
@@ -111,6 +92,7 @@ public class RatingDAO
 
                     Rating rating = stringToRating(line);
                     allRatings.add(rating);
+                    rating.getMovie().getRatings().add(rating);
                 } catch (Exception ex) {
                     //Do nothing we simply do not accept malformed lines of data.
                     //In a perfect world you should at least log the incident.
