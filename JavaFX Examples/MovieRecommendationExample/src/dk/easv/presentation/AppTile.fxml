@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.presentation.AppTileController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dk.easv.presentation.AppTileController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
     <ColumnConstraints hgrow="SOMETIMES" />
@@ -54,7 +54,7 @@
       <TableView fx:id="tblTopSimilarUsers" prefHeight="200.0" prefWidth="400.0" GridPane.columnIndex="7" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
          <columns>
             <TableColumn fx:id="clmTopSimUsersId" maxWidth="-1.0" minWidth="50.0" prefWidth="-1.0" text="id" />
-            <TableColumn fx:id="clmTopSimUsersName" maxWidth="-1.0" minWidth="250.0" prefWidth="-1.0" text="name" />
+            <TableColumn fx:id="clmTopSimUsersName" maxWidth="-1.0" minWidth="150.0" prefWidth="-1.0" text="name" />
             <TableColumn fx:id="clmTopSimUsersSimilarity" maxWidth="-1.0" minWidth="100.0" prefWidth="-1.0" text="similarity" />
          </columns>
       </TableView>
